@@ -11,5 +11,6 @@ public class Application {
         Faker faker = new Faker(Locale.ITALIAN);
         System.out.println(faker.backToTheFuture().character());
 
+        System.out.println("ciao a tutti ");
     }
 }
