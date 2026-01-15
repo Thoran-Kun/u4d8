@@ -52,6 +52,9 @@ public class Application {
         orderList.add(new Order(5L, "delivered", LocalDate.now(), LocalDate.now().plusDays(3), List.of(productList.get(5)), c5));
         orderList.add(new Order(6L, "delivered", LocalDate.now(), LocalDate.now().plusDays(3), List.of(productList.get(6)), c4));
         orderList.add(new Order(7L, "delivered", LocalDate.now(), LocalDate.now().plusDays(3), List.of(productList.get(7)), c4));
+        orderList.add(new Order(8L, "delivered", LocalDate.now(), LocalDate.now().plusDays(3), List.of(productList.get(7)), c6));
+        orderList.add(new Order(9L, "delivered", LocalDate.now(), LocalDate.now().plusDays(3), List.of(productList.get(7)), c6));
+        orderList.add(new Order(10L, "delivered", LocalDate.now(), LocalDate.now().plusDays(3), List.of(productList.get(7)), c7));
 
         //Esercizio 1
         //Raggruppare gli ordini per cliente utilizzando Stream e Lambda. Crea una mappa in cui la chiave è il cliente
@@ -59,6 +62,12 @@ public class Application {
         Map<Customer, List<Order>> ordineCliente = orderList.stream().collect(Collectors.groupingBy(c -> c.getCustomer()));
         System.out.println(ordineCliente);
 
-        //Esercizio 2 
+        //Esercizio 2
+        Map<Customer, Double> venditePerCliente = orderList.stream()
+                .collect(Collectors.groupingBy(
+                        o -> o.getCustomer(),
+                        Collectors.summingDouble(ord -> ord.getProduct().stream().mapToDouble(p -> p.getPrice()).sum())
+                ));
+        System.out.println("il totale di ogni acquisto è: " + venditePerCliente);
     }
 }
