@@ -68,6 +68,6 @@ public class Application {
                         o -> o.getCustomer(),
                         Collectors.summingDouble(ord -> ord.getProduct().stream().mapToDouble(p -> p.getPrice()).sum())
                 ));
-        System.out.println("il totale di ogni acquisto è: " + venditePerCliente);
+        System.out.println("il totale di ogni acquisto è: -" + venditePerCliente + "€");
     }
 }
